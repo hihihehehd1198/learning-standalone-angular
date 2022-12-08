@@ -16,8 +16,21 @@ import { ValidatepipePipe } from './store/validatepipe.pipe';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 @Component({
   selector: 'list-todo',
-  templateUrl: './list-todo.component.html',
-  styleUrls: ['./list-todo.component.css'],
+  template: `<p>pages/todo/list-todo works!</p>
+
+  <input (keydown)="addTodo($event)" type="text" placeholder="your todo ...." />
+  <!-- <ng-container *ngIf="listTodo | async | validatepipe"> -->
+  <ul>
+    <li *ngFor="let item of listTodo | async">
+      <app-todo-item
+        [todoItem]="item"
+        (deleteTodoProps)="deleteTodoEvent(item.id)"
+      ></app-todo-item>
+    </li>
+  </ul>
+  <!-- </ng-container> -->
+  <router-outlet></router-outlet>
+  `,
   standalone: true,
   imports: [CommonModule, RouterOutlet, ValidatepipePipe, TodoItemComponent],
   providers: [TodoStore],

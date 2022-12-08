@@ -16,8 +16,14 @@ import { TodoItem } from '../store/type';
 
 @Component({
   selector: 'app-todo-item',
-  templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.css'],
+  template: `
+  <ng-template [ngIf]="todoItem">
+  <li class="flex flex-row p-[30px]">
+    <div>{{ todoItem.note }}</div>
+    <button (click)="deleteTodo(todoItem.id)">Delte Todo</button>
+  </li>
+</ng-template>
+  `,
   standalone: true,
   imports: [CommonModule],
   // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,7 +35,6 @@ export class TodoItemComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {}
   deleteTodo(id: number) {
-    
     this.deleteTodoProps.emit(id);
   }
 }
