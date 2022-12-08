@@ -49,7 +49,12 @@ export class ListTodoComponent implements OnInit, AfterViewInit {
    */
   addTodo(e: any): void {
     const id = +(Math.random() * 10);
-    e.code.toString().toLowerCase().includes('enter') &&
+    if (e.code.toString().toLowerCase().includes('enter')) {
       this.todoStore.addTodo({ id, note: e.target.value });
+      e.target.value = '';
+    }
+  }
+  deleteTodoEvent(id: number) {
+    this.todoStore.removeTodo(id);
   }
 }

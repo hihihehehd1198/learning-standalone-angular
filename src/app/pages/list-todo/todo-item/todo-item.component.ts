@@ -5,9 +5,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   inject,
+  Input,
   OnInit,
+  Output,
+  TemplateRef,
 } from '@angular/core';
+import { TodoItem } from '../store/type';
 
 @Component({
   selector: 'app-todo-item',
@@ -17,12 +22,14 @@ import {
   imports: [CommonModule],
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoItemComponent implements OnInit, AfterContentChecked {
-  cd = inject(ChangeDetectorRef);
-
+export class TodoItemComponent implements OnInit, AfterContentInit {
+  @Input() todoItem: TodoItem;
+  @Output() deleteTodoProps: EventEmitter<any> = new EventEmitter<number>();
   ngOnInit() {}
 
-  ngAfterContentChecked() {
-    // this.cd.detectChanges();
+  ngAfterContentInit() {}
+  deleteTodo(id: number) {
+    
+    this.deleteTodoProps.emit(id);
   }
 }

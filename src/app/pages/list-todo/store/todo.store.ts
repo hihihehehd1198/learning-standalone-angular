@@ -23,9 +23,9 @@ export class TodoStore extends ComponentStore<TodoState> {
    * remove todo with id
    * @param todo using id
    */
-  readonly removeTodo = this.updater((state, todo: TodoItem) => {
+  readonly removeTodo = this.updater((state, id: number) => {
     state.listTodo.splice(
-      [...state.listTodo].findIndex((x) => x.id === todo.id),
+      [...state.listTodo].findIndex((x) => x.id === id),
       1
     );
     return { listTodo: [...state.listTodo] };

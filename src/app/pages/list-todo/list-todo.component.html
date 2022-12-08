@@ -4,7 +4,10 @@
 <!-- <ng-container *ngIf="listTodo | async | validatepipe"> -->
 <ul>
   <li *ngFor="let item of listTodo | async">
-    <app-todo-item> {{ item.note }} </app-todo-item>
+    <app-todo-item
+      [todoItem]="item"
+      (deleteTodoProps)="deleteTodoEvent(item.id)"
+    ></app-todo-item>
   </li>
 </ul>
 <!-- </ng-container> -->
