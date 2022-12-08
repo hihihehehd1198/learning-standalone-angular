@@ -1,19 +1,30 @@
 import './polyfills';
 
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { importProvidersFrom } from '@angular/core';
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
+import { RouterModule, Routes } from '@angular/router';
 
-// platformBrowserDynamic().bootstrapModule(AppModule).then(ref => {
-//   // Ensure Angular destroys itself on hot reloads.
-//   if (window['ngRef']) {
-//     window['ngRef'].destroy();
-//   }
-//   window['ngRef'] = ref;
+const RoutingTree: Routes = [
+  {
+    path: 'todo',
+    loadComponent: () =>
+      import('./app/pages/list-todo/list-todo.component').then(
+        (x) => x.ListTodoComponent
+      ),
+    children: [
+      {
+        path: 'todo-item',
+        loadComponent: () =>
+          import('./app/pages/list-todo/todo-item/todo-item.component').then(
+            (y) => y.TodoItemComponent
+          ),
+      },
+    ],
+  },
+];
 
-//   // Otherwise, log the boot error
-// }).catch(err => console.error(err));
-
-bootstrapApplication(AppComponent);
+bootstrapApplication(AppComponent, {
+  providers: [importProvidersFrom(RouterModule.forRoot(RoutingTree))],
+});
