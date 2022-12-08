@@ -1,2 +1,11 @@
 <p>pages/todo/list-todo works!</p>
+
+<input (keydown)="addTodo($event)" type="text" placeholder="your todo ...." />
+<!-- <ng-container *ngIf="listTodo | async | validatepipe"> -->
+<ul>
+  <li *ngFor="let item of listTodo | async">
+    <app-todo-item> {{ item.note }} </app-todo-item>
+  </li>
+</ul>
+<!-- </ng-container> -->
 <router-outlet></router-outlet>

@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 
 @Component({
   selector: 'app-todo-item',
@@ -7,9 +15,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-item.component.css'],
   standalone: true,
   imports: [CommonModule],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoItemComponent implements OnInit {
-  constructor() {}
+export class TodoItemComponent implements OnInit, AfterContentChecked {
+  cd = inject(ChangeDetectorRef);
 
   ngOnInit() {}
+
+  ngAfterContentChecked() {
+    // this.cd.detectChanges();
+  }
 }

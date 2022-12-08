@@ -8,6 +8,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const RoutingTree: Routes = [
   {
+    path: '**',
+    redirectTo: 'todo',
+  },
+  {
     path: 'todo',
     loadComponent: () =>
       import('./app/pages/list-todo/list-todo.component').then(
