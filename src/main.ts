@@ -6,7 +6,8 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { APOLLO_OPTIONS } from 'apollo-angular';
-import { HttpLink, InMemoryCache } from '@apollo/client';
+import { InMemoryCache } from '@apollo/client';
+import { HttpLink } from 'apollo-angular/build/http';
 
 const RoutingTree: Routes = [
   {
@@ -37,16 +38,5 @@ const RoutingTree: Routes = [
 const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    importProvidersFrom(RouterModule.forRoot(RoutingTree)),
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory(httpLink: HttpLink) {
-        return {
-          cache: new InMemoryCache(),
-          link: httpli,
-        };
-      },
-    },
-  ],
+  providers: [importProvidersFrom(RouterModule.forRoot(RoutingTree))],
 });
