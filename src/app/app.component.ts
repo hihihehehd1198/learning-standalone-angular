@@ -32,24 +32,7 @@ const uri = 'https://api.spacex.land/graphql/'; // our GraphQL API
 })
 export class AppComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
-  private apollo = inject(Apollo);
   ngOnInit() {
-    console.log(this.apollo);
-    this.apollo
-      .watchQuery({
-        query: gql`
-          {
-            launchesPast(limit: 10) {
-              mission_name
-              launch_date_local
-              launch_site {
-                site_name_long
-              }
-            }
-          }
-        `,
-      })
-      .valueChanges.pipe(tap((x) => console.log(x)))
-      .subscribe();
+    
   }
 }
