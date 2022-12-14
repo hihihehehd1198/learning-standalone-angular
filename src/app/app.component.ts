@@ -7,7 +7,7 @@ import { Apollo, ApolloModule, APOLLO_OPTIONS, gql } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/build/http';
 import { tap } from 'rxjs';
 
-const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
+const uri = 'https://api.spacex.land/graphql/'; // our GraphQL API
 
 @Component({
   selector: 'my-app',
@@ -39,9 +39,12 @@ export class AppComponent implements OnInit {
       .watchQuery({
         query: gql`
           {
-            rates(currency: "USD") {
-              currency
-              rate
+            launchesPast(limit: 10) {
+              mission_name
+              launch_date_local
+              launch_site {
+                site_name_long
+              }
             }
           }
         `,
