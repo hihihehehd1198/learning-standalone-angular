@@ -1,6 +1,10 @@
 import './polyfills';
 
-import { importProvidersFrom, InjectionToken } from '@angular/core';
+import {
+  enableProdMode,
+  importProvidersFrom,
+  InjectionToken,
+} from '@angular/core';
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
@@ -8,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { InMemoryCache } from '@apollo/client';
 import { HttpLink } from 'apollo-angular/build/http';
+enableProdMode();
 
 const RoutingTree: Routes = [
   {
