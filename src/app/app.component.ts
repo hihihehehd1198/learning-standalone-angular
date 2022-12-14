@@ -15,24 +15,22 @@ const uri = 'https://api.spacex.land/graphql/'; // our GraphQL API
   `,
   standalone: true,
   imports: [CommonModule, RouterOutlet, ApolloModule, HttpClientModule],
-  providers: [
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory(httpLink: HttpLink) {
-        return {
-          cache: new InMemoryCache(),
-          link: httpLink.create({
-            uri,
-          }),
-        };
-      },
-      deps: [HttpLink],
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: APOLLO_OPTIONS,
+  //     useFactory(httpLink: HttpLink) {
+  //       return {
+  //         cache: new InMemoryCache(),
+  //         link: httpLink.create({
+  //           uri,
+  //         }),
+  //       };
+  //     },
+  //     deps: [HttpLink],
+  //   },
+  // ],
 })
 export class AppComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 }
