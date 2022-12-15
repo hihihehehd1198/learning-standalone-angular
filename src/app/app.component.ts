@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject, OnInit, VERSION } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InMemoryCache } from '@apollo/client';
@@ -32,5 +32,29 @@ const uri = 'https://api.spacex.land/graphql/'; // our GraphQL API
 })
 export class AppComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
-  ngOnInit() {}
+  httpClient = inject(HttpClient);
+  apolloClient = inject(Apollo);
+  ngOnInit() {
+    this.httpClient
+      .get('https://api.publicapis.org/entries')
+      .pipe(
+        tap((x) => {
+          console.log(x);
+        })
+      )
+      .subscribe();
+    // console.log(this.apolloClient);
+    // this.apolloClient
+    //   .watchQuery({
+    //     query: gql`
+    //     {
+    //       rates(currency: "USD") {
+    //         currency
+    //         rate
+    //       }
+    //     }
+    //   `,
+    //   })
+    //   .valueChanges.pipe(tap((x) => console.log(x)));
+  }
 }
