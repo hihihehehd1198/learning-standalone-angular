@@ -12,6 +12,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { InMemoryCache } from '@apollo/client';
 import { HttpLink } from 'apollo-angular/build/http';
+import { provideEffects } from '@ngrx/effects/src/provide_effects';
+import { AppEffects } from './app/app.effect';
+import { provideStore } from '@ngrx/store/src/provide_store';
 enableProdMode();
 
 const RoutingTree: Routes = [
@@ -43,5 +46,8 @@ const RoutingTree: Routes = [
 const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
 
 bootstrapApplication(AppComponent, {
-  providers: [importProvidersFrom(RouterModule.forRoot(RoutingTree))],
+  providers: [
+    importProvidersFrom(RouterModule.forRoot(RoutingTree)),
+    provideStore(),
+  ],
 });

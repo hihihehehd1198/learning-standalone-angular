@@ -3,9 +3,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject, OnInit, VERSION } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InMemoryCache } from '@apollo/client';
+import { EffectsModule } from '@ngrx/effects';
 import { Apollo, ApolloModule, APOLLO_OPTIONS, gql } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/build/http';
 import { tap } from 'rxjs';
+import { AppEffects } from './app.effect';
 
 const uri = 'https://api.spacex.land/graphql/'; // our GraphQL API
 

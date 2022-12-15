@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
 export class AppService {
   httpClient = inject(HttpClient);
 
-  getAllData = this.httpClient.get(
-    'https://api.publicapis.org/entries'
-  ) as Observable<any>;
+  getAllData() {
+    return this.httpClient.get('https://api.publicapis.org/entries');
+  }
 }
